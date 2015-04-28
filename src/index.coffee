@@ -1,0 +1,3 @@
+test = require "./test"
+
+test()
