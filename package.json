@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "install": "napa",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Martin Zajic @zajca",
@@ -29,6 +30,17 @@
     "run-sequence": "^1.1.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
-    "watchify": "=3.1.2"
+    "watchify": "=3.1.2",
+    "napa": "=1.2.0"
+  },
+  "napa": {
+    "angular": "angular/bower-angular#v1.3.15",
+    "angular-sanitize": "angular/bower-angular-sanitize#v1.3.15",
+    "angular-animate": "angular/bower-angular-animate#v1.3.15",
+    "angular-touch": "angular/bower-angular-touch#v1.3.15",
+    "angular-aria": "angular/bower-angular-aria#v1.3.15",
+    "angular-cookies": "angular/bower-angular-cookies#v1.3.15",
+    "angular-messages": "angular/bower-angular-messages#v1.3.15",
+    "angular-route": "angular/bower-angular-route#v1.3.15"
   }
 }
