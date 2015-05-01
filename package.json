@@ -10,13 +10,12 @@
   "author": "Martin Zajic @zajca",
   "license": "MIT",
   "devDependencies": {
+    "babelify": "^6.0.2",
     "browserify": "^9.0.8",
-    "coffeeify": "^1.1.0",
-    "coffeelint-stylish": "^0.1.2",
     "del": "^1.1.1",
     "exposify": "^0.4.0",
     "gulp": "^3.8.11",
-    "gulp-coffeelint": "^0.4.0",
+    "gulp-jshint": "^1.10.0",
     "gulp-livereload": "^3.8.0",
     "gulp-load-plugins": "^0.10.0",
     "gulp-notify": "^2.2.0",
@@ -25,13 +24,14 @@
     "gulp-uglify": "^1.2.0",
     "gulp-util": "^3.0.4",
     "gulp-webserver": "^0.9.0",
+    "jshint-stylish": "^1.0.1",
     "lodash.assign": "^3.1.0",
+    "napa": "=1.2.0",
     "polyify": "0.0.4",
     "run-sequence": "^1.1.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
-    "watchify": "=3.1.2",
-    "napa": "=1.2.0"
+    "watchify": "=3.1.2"
   },
   "napa": {
     "angular": "angular/bower-angular#v1.3.15",

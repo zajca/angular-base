@@ -28,15 +28,11 @@ const AUTOPREFIXER_BROWSERS = [
   'bb >= 10'
 ];
 
-gulp.task('coffeehint', function () {
-  return gulp.src(APP_CONFIG.app+'/**/*.coffee')
-  .pipe($.coffeelint())
-  .pipe($.coffeelint.reporter());
-});
-
 gulp.task('jshint', function () {
     return gulp.src(APP_CONFIG.app+'/**/*.js')
-        .pipe($.jshint())
+        .pipe($.jshint({
+          esnext:true
+        }))
         .pipe($.jshint.reporter('jshint-stylish'));
 });
 
@@ -49,13 +45,13 @@ gulp.task('clean', del.bind(null,
 // BROWSERIFY
 const customOpts = {
   extensions: ['.coffee', '.js'],
-  entries: [APP_CONFIG.app+'/index.coffee'],
+  entries: [APP_CONFIG.app+'/index.js'],
   debug: true
 };
 
 const opts = assign({}, watchify.args, customOpts);
-const bundler = watchify(browserify(APP_CONFIG.app+'/index.coffee',opts));
-bundler.transform('coffeeify');
+const bundler = watchify(browserify(APP_CONFIG.app+'/index.js',opts));
+bundler.transform('babelify');
 bundler.transform(polyify({ browsers: AUTOPREFIXER_BROWSERS }));
 
 function bundle(){
@@ -87,10 +83,9 @@ gulp.task('webserver',function() {
 });
 
 gulp.task('watch', function () {
-  gulp.watch([APP_CONFIG.app+'/**/*.coffee'], ['coffeehint']);
   gulp.watch([APP_CONFIG.app+'/**/*.js'], ['jshint']);
 });
 
 gulp.task('default',function(){
-  runSequence('clean',['coffeehint','dev:js','webserver','watch']);
+  runSequence('clean',['jshint','dev:js','webserver','watch']);
 })
