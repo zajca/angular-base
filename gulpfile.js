@@ -45,12 +45,12 @@ gulp.task('clean', del.bind(null,
 // BROWSERIFY
 const customOpts = {
   extensions: ['.coffee', '.js'],
-  entries: [APP_CONFIG.app+'/index.js'],
+  entries: [APP_CONFIG.app+'/js/index.js'],
   debug: true
 };
 
 const opts = assign({}, watchify.args, customOpts);
-const bundler = watchify(browserify(APP_CONFIG.app+'/index.js',opts));
+const bundler = watchify(browserify(APP_CONFIG.app+'/js/index.js',opts));
 bundler.transform('babelify');
 bundler.transform(polyify({ browsers: AUTOPREFIXER_BROWSERS }));
 
@@ -63,7 +63,7 @@ function bundle(){
   .pipe(buffer())
   .pipe($.sourcemaps.init({loadMaps: true}))
   .pipe($.sourcemaps.write('./'))
-  .pipe(gulp.dest(APP_CONFIG.dist))
+  .pipe(gulp.dest(APP_CONFIG.dist+'/js'))
   .pipe($.livereload({auto: false}))
   bundler.on('update', bundle)
 };

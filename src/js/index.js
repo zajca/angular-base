@@ -1,6 +1,5 @@
 import angular from "angular";
 import TestCtrl from "./TestCtrl";
-console.log(TestCtrl);
 
-angular.module("PRIAApp",[])
+angular.module("APP",[])
 .controller('TestCtrl',TestCtrl);
