@@ -1,7 +1,7 @@
 {
   "name": "angular-base",
   "version": "1.0.0",
-  "description": "",
+  "description": "angular base",
   "main": "index.js",
   "scripts": {
     "install": "napa",
@@ -9,6 +9,7 @@
   },
   "author": "Martin Zajic @zajca",
   "license": "MIT",
+  "repository": "https://github.com/zajca/angular-base",
   "devDependencies": {
     "browserify": "^9.0.8",
     "coffeeify": "^1.1.0",
@@ -17,10 +18,14 @@
     "exposify": "^0.4.0",
     "gulp": "^3.8.11",
     "gulp-coffeelint": "^0.4.0",
+    "gulp-autoprefixer": "^2.2.0",
+    "gulp-less": "^3.0.3",
     "gulp-livereload": "^3.8.0",
     "gulp-load-plugins": "^0.10.0",
     "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^1.0.0",
     "gulp-rename": "^1.2.2",
+    "gulp-size": "^1.2.1",
     "gulp-sourcemaps": "^1.5.2",
     "gulp-uglify": "^1.2.0",
     "gulp-util": "^3.0.4",
@@ -41,6 +46,11 @@
     "angular-aria": "angular/bower-angular-aria#v1.3.15",
     "angular-cookies": "angular/bower-angular-cookies#v1.3.15",
     "angular-messages": "angular/bower-angular-messages#v1.3.15",
-    "angular-route": "angular/bower-angular-route#v1.3.15"
-  }
+    "angular-route": "angular/bower-angular-route#v1.3.15",
+    "bootstrap": "twbs/bootstrap#v3.3.2",
+    "FontAwesome": "FortAwesome/Font-Awesome#v4.3.0",
+    "lesshat": "madebysource/lesshat#v3.0.2",
+    "animate.css": "daneden/animate.css#v3.1.0"
+  },
+  "dependencies": {}
 }

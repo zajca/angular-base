@@ -34,17 +34,29 @@ gulp.task('coffeehint', function () {
   .pipe($.coffeelint.reporter());
 });
 
-gulp.task('jshint', function () {
-    return gulp.src(APP_CONFIG.app+'/**/*.js')
-        .pipe($.jshint())
-        .pipe($.jshint.reporter('jshint-stylish'));
-});
-
 gulp.task('clean', del.bind(null,
   [
     APP_CONFIG.dist+'/js',
+    APP_CONFIG.dist+'/css',
   ],{dot: true}
 ));
+
+gulp.task('css', function () {
+  return gulp.src(APP_CONFIG.app+'/css/index.less')
+  .pipe($.plumber())
+  .pipe($.sourcemaps.init())
+  .pipe($.less({
+    paths: [
+      path.join(__dirname, 'node_modules')
+    ],
+    onError: console.error.bind(console, 'LESS error:')
+    }))
+  .pipe($.autoprefixer({browsers: AUTOPREFIXER_BROWSERS}))
+  .pipe($.sourcemaps.write())
+  .pipe(gulp.dest(APP_CONFIG.dist+'/css'))
+  .pipe($.livereload({auto: false}))
+  .pipe($.size({title: 'styles'}));
+});
 
 // BROWSERIFY
 const customOpts = {
@@ -88,9 +100,9 @@ gulp.task('webserver',function() {
 
 gulp.task('watch', function () {
   gulp.watch([APP_CONFIG.app+'/**/*.coffee'], ['coffeehint']);
-  gulp.watch([APP_CONFIG.app+'/**/*.js'], ['jshint']);
+  gulp.watch(APP_CONFIG.app+'/css/*.less', ['css']);
 });
 
 gulp.task('default',function(){
-  runSequence('clean',['coffeehint','dev:js','webserver','watch']);
+  runSequence('clean',['coffeehint','css','dev:js','webserver','watch']);
 })
