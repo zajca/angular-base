@@ -42,6 +42,23 @@ gulp.task('clean', del.bind(null,
   ],{dot: true}
 ));
 
+gulp.task('css', function () {
+  return gulp.src(APP_CONFIG.app+'/css/index.less')
+  .pipe($.plumber())
+  .pipe($.sourcemaps.init())
+  .pipe($.less({
+    paths: [
+      path.join(__dirname, 'node_modules')
+    ],
+    onError: console.error.bind(console, 'LESS error:')
+    }))
+  .pipe($.autoprefixer({browsers: AUTOPREFIXER_BROWSERS}))
+  .pipe($.sourcemaps.write())
+  .pipe(gulp.dest(APP_CONFIG.dist+'/css'))
+  .pipe($.livereload({auto: false}))
+  .pipe($.size({title: 'styles'}));
+});
+
 // BROWSERIFY
 const customOpts = {
   extensions: ['.coffee', '.js'],
@@ -83,9 +100,10 @@ gulp.task('webserver',function() {
 });
 
 gulp.task('watch', function () {
-  gulp.watch([APP_CONFIG.app+'/**/*.js'], ['jshint']);
+  gulp.watch([APP_CONFIG.app+'/js/*.js'], ['jshint']);
+  gulp.watch(APP_CONFIG.app+'/css/*.less', ['css']);
 });
 
 gulp.task('default',function(){
-  runSequence('clean',['jshint','dev:js','webserver','watch']);
+  runSequence('clean',['jshint','dev:js','css','watch'],'webserver');
 })
