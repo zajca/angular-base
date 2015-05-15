@@ -78,7 +78,7 @@ function bundle(){
   .pipe(source('app.js'))
   .pipe(buffer())
   .pipe($.sourcemaps.init({loadMaps: true}))
-  .pipe($.sourcemaps.write('./'))
+  .pipe($.sourcemaps.write())
   .pipe(gulp.dest(APP_CONFIG.dist+'/js'))
   .pipe($.livereload({auto: false}))
   bundler.on('update', bundle)
