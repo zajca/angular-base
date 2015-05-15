@@ -45,6 +45,8 @@ gulp.task('clean', del.bind(null,
 gulp.task('css', function () {
   return gulp.src(APP_CONFIG.app+'/css/index.less')
   .pipe($.plumber())
+  .pipe($.cached('style'))
+  .pipe($.progeny())
   .pipe($.sourcemaps.init())
   .pipe($.less({
     paths: [
@@ -82,6 +84,7 @@ function bundle(){
   .pipe($.sourcemaps.write())
   .pipe(gulp.dest(APP_CONFIG.dist+'/js'))
   .pipe($.livereload({auto: false}))
+  .pipe($.size({title: 'js'}));
   bundler.on('update', bundle)
 };
 
